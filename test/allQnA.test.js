@@ -10,8 +10,19 @@ describe('Get allQnA', () => {
         .then(json => {qna = json.data.allQnA})
         .then(done);
   })
-//   it('should not return any null values for Question categories', () => {
-//     expect(!!questionCategories.name).to.be.true;
-// })
-//TODO Add test to make sure that Question Categories should not contain empty questions or answers
+  it('should not return any null values for Question categories', () => {
+    qna.forEach((question) => {
+      expect(!!question.name).to.be.true;
+    })
+  })
+  it('should not return any null values for Questions', () => {
+    qna.forEach((question) => {
+    expect(!!question.question).to.be.true;
+    })
+  })
+  it('should not return any null values for Answers', () => {
+    qna.forEach((question) => {
+    expect(!!question.answer).to.be.true;
+    })
+  })
 })
