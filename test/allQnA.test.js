@@ -5,7 +5,7 @@ var expect = chai.expect;
 describe('Get allQnA', () => {
   var qna;
   before((done) => {
-    fetch('http://brain.red-badger.com/graphql?query=%7B%0A%20%20allQnA%20%7B%0A%20%20%20%20name%0A%20%20%20%20slug%0A%20%20%20%20topics%20%7B%0A%20%20%20%20%20%20slug%0A%20%20%20%20%20%20question%0A%20%20%20%20%20%20answer%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D')
+    fetch('http://brain-staging.red-badger.com/graphql?query=%7B%0A%20%20allQnA%20%7B%0A%20%20%20%20name%0A%20%20%20%20slug%0A%20%20%20%20topics%20%7B%0A%20%20%20%20%20%20slug%0A%20%20%20%20%20%20question%0A%20%20%20%20%20%20answer%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A%0A')
         .then(res => res.json())
         .then(json => {qna = json.data.allQnA})
         .then(done);
@@ -19,13 +19,17 @@ describe('Get allQnA', () => {
     })
   })
   it('should not return any null values for Questions', () => {
-    qna.forEach((question) => {
-    expect(!!question.question, 'missing a question').to.be.true;
-    })
-  })
-  it('should not return any null values for Answers', () => {
-    qna.forEach((question) => {
-    expect(!!question.answer, 'missing an answer').to.be.true;
+    qna.forEach((category) => {
+      category.topics.forEach((topic) =>{
+        expect(!!topic.question, 'missing a question').to.be.true;
     })
   })
 })
+  it('should not return any null values for Answers', () => {
+    qna.forEach((category) => {
+      category.topics.forEach((topic) =>{
+        expect(!!topic.answer, 'missing an answer').to.be.true;
+      })
+    })
+  });
+});
