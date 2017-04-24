@@ -5,7 +5,7 @@ var expect = chai.expect;
 describe('Get allQnA', () => {
   var qna;
   before((done) => {
-    fetch('http://brain-staging.red-badger.com/graphql?query=%7B%0A%20%20allQnA%20%7B%0A%20%20%20%20name%0A%20%20%20%20slug%0A%20%20%20%20topics%20%7B%0A%20%20%20%20%20%20slug%0A%20%20%20%20%20%20question%0A%20%20%20%20%20%20answer%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A%0A')
+    fetch('http://brain.red-badger.com/graphql?query=%7B%0A%20%20allQnA%20%7B%0A%20%20%20%20name%0A%20%20%20%20slug%0A%20%20%20%20topics%20%7B%0A%20%20%20%20%20%20slug%0A%20%20%20%20%20%20question%0A%20%20%20%20%20%20answer%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A%0A')
         .then(res => res.json())
         .then(json => {qna = json.data.allQnA})
         .then(done);
