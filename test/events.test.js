@@ -36,12 +36,10 @@ describe('Get allEvents', () => {
          expect(!!event.startDateTime.iso).to.be.true;
      })
  })
- // it('should contain only valid external links', (done) => {
- //     events.forEach((event) => {
- //     fetch(event.externalLinks.url).then((resp) => {
- //         expect(resp.ok).to.be.true;
- //         done();
- //         });
- //     })
- // })
+ it.only('should return images from Prismic', () => {
+   events.forEach((event) => {
+     expect(event.featureImageFilename).to.contain('prismic');
+     expect(event.featureImageFilename).to.not.contain('cloudinary');
+   })
+ })
 })
