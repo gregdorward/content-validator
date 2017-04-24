@@ -36,7 +36,7 @@ describe('Get allEvents', () => {
          expect(!!event.startDateTime.iso).to.be.true;
      })
  })
- it.only('should return images from Prismic', () => {
+ it('should return images from Prismic', () => {
    events.forEach((event) => {
      expect(event.featureImageFilename).to.contain('prismic');
      expect(event.featureImageFilename).to.not.contain('cloudinary');
